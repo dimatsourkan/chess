@@ -1,0 +1,30 @@
+<div class="board-container">
+
+  <div class="board" [ngStyle]="{ width : width+'px', height : height+'px' }">
+
+    <ng-content class="board-header" select="[board-header]">
+
+    </ng-content>
+
+    <div>
+
+      <div class="board-content">
+        <div class="row" *ngFor="let r of rows;let i=index">
+          <div class="col" *ngFor="let c of cols;let j=index" [ngStyle]="{
+            background : getBg(i, j)
+          }">
+          </div>
+        </div>
+      </div>
+
+      <div class="board-inner-content">
+        <ng-content>
+
+        </ng-content>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

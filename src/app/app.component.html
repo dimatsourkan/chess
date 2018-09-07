@@ -1,0 +1,10 @@
+<board>
+  <div board-header>
+    <button (click)="chessBoardService.saveState()">Save</button>
+    <button (click)="chessBoardService.loadState()">Load</button>
+    <button (click)="chessBoardService.resetState()">Reset</button>
+    <input type="color" (change)="changeDark($event.target.value)" [value]="chessBoardService.bgDark"/>
+    <input type="color" (change)="changeLight($event.target.value)" [value]="chessBoardService.bgLight"/>
+  </div>
+  <chess-board></chess-board>
+</board>

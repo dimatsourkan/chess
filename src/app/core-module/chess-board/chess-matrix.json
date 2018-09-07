@@ -1,0 +1,51 @@
+[
+  [
+    { "type" : "Rook", "color" : "Black" },
+    { "type" : "Knight", "color" : "Black" },
+    { "type" : "Bishop", "color" : "Black" },
+    { "type" : "King", "color" : "Black" },
+    { "type" : "Queen", "color" : "Black" },
+    { "type" : "Bishop", "color" : "Black" },
+    { "type" : "Knight", "color" : "Black" },
+    { "type" : "Rook", "color" : "Black" }
+  ],
+
+  [
+    { "type" : "Pawn", "color" : "Black" },
+    { "type" : "Pawn", "color" : "Black" },
+    { "type" : "Pawn", "color" : "Black" },
+    { "type" : "Pawn", "color" : "Black" },
+    { "type" : "Pawn", "color" : "Black" },
+    { "type" : "Pawn", "color" : "Black" },
+    { "type" : "Pawn", "color" : "Black" },
+    { "type" : "Pawn", "color" : "Black" }
+  ],
+
+  [null, null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null, null],
+
+  [
+    { "type" : "Pawn", "color" : "White", "reverseDirection" : true },
+    { "type" : "Pawn", "color" : "White", "reverseDirection" : true },
+    { "type" : "Pawn", "color" : "White", "reverseDirection" : true },
+    { "type" : "Pawn", "color" : "White", "reverseDirection" : true },
+    { "type" : "Pawn", "color" : "White", "reverseDirection" : true },
+    { "type" : "Pawn", "color" : "White", "reverseDirection" : true },
+    { "type" : "Pawn", "color" : "White", "reverseDirection" : true },
+    { "type" : "Pawn", "color" : "White", "reverseDirection" : true }
+  ],
+
+  [
+    { "type" : "Rook", "color" : "White" },
+    { "type" : "Knight", "color" : "White" },
+    { "type" : "Bishop", "color" : "White" },
+    { "type" : "Queen", "color" : "White" },
+    { "type" : "King", "color" : "White" },
+    { "type" : "Bishop", "color" : "White" },
+    { "type" : "Knight", "color" : "White" },
+    { "type" : "Rook", "color" : "White" }
+  ]
+
+]

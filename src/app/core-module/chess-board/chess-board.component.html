@@ -1,0 +1,24 @@
+<div class="chess-moves">
+  <div class="moves-row" *ngFor="let r of chessBoardService.movesMatrix">
+    <div class="moves-col" *ngFor="let c of r" [ngClass]="{'can-move' : c}"></div>
+  </div>
+</div>
+
+<div class="chess-table">
+  <div class="chess-row" *ngFor="let row of chessBoardService.chessMatrix; let x=index">
+
+    <div class="chess-item"
+         *ngFor="let chess of row; let y=index"
+         (dragleave)="chessBoardService.setPosition(x, y)"
+         (dragend)="chessBoardService.moveCurrent()"
+         (dragstart)="chessBoardService.setCurrent(chess)"
+         (click)="selectChess(chess, x, y)"
+         [attr.draggable]="(chess && chess.color !== chessBoardService.lastMoveColor)">
+
+      <chess *ngIf="chess"
+             [chess]="chess">
+      </chess>
+
+    </div>
+  </div>
+</div>
