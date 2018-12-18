@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Chess, CHESS_COLOR, CHESS_TYPE, IChess, IChessMoveCoordinates } from '../chess/chess-types/chess.model';
-import { RookChess } from '../chess/chess-types/rook-chess.model';
-import { KnightChess } from '../chess/chess-types/knight-chess.model';
-import { BishopChess } from '../chess/chess-types/bishop-chess.model';
-import { PawnChess } from '../chess/chess-types/pawn-chess.model';
-import { KingChess } from '../chess/chess-types/king-chess.model';
-import { QueenChess } from '../chess/chess-types/queen-chess.model';
+import { Chess, CHESS_COLOR, CHESS_TYPE, IChess } from '../../models/chess/chess.model';
+import { RookChess } from '../../models/chess/rook-chess.model';
+import { KnightChess } from '../../models/chess/knight-chess.model';
+import { BishopChess } from '../../models/chess/bishop-chess.model';
+import { PawnChess } from '../../models/chess/pawn-chess.model';
+import { KingChess } from '../../models/chess/king-chess.model';
+import { QueenChess } from '../../models/chess/queen-chess.model';
+import { IChessPointModel } from '../../models/chess-point.model';
 
 declare var require : any;
 let matrix = require('./chess-matrix.json');
@@ -25,7 +26,7 @@ export class ChessBoardService {
   movesMatrix : any[][] = [];
 
   // Матрица с фигурами на доске
-  chessMatrix : Chess|number[][] = [];
+  chessMatrix : Chess[][] = [];
 
   // Текущая выбранная фигура
   currentChess : Chess;
@@ -44,7 +45,6 @@ export class ChessBoardService {
 
   /**
    * Построение матрицы возможных ходов
-   * @returns {any[]}
    */
   private setMovesMatrix() {
 
@@ -73,10 +73,10 @@ export class ChessBoardService {
 
   /**
    * Проверка коллизий текщей фигуры
-   * @param {IChessMoveCoordinates} moveTo
+   * @param {IChessPointModel} moveTo
    * @returns {boolean}
    */
-  private checkCollisions(moveTo : IChessMoveCoordinates) {
+  private checkCollisions(moveTo : IChessPointModel) {
     return this.currentChess.checkCollisions(this.chessMatrix, moveTo);
   }
 

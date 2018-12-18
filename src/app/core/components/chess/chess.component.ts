@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Chess } from './chess-types/chess.model';
+import { Chess } from '../../models/chess/chess.model';
 
 
 

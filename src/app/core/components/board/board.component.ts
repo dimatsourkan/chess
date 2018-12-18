@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { ENVIRONMENT } from '../../../environments/environment';
+import { ENVIRONMENT } from '../../../../environments/environment';
 import { ChessBoardService } from '../chess-board/chess-board.service';
 
 

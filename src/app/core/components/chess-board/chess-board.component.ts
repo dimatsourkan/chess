@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ChessBoardService } from './chess-board.service';
-import { Chess } from '../chess/chess-types/chess.model';
+import { Chess } from '../../models/chess/chess.model';
 
 @Component({
   selector : 'chess-board',

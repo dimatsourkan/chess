@@ -1,5 +1,6 @@
-import { Chess, CHESS_TYPE, IChessMoveCoordinates, MOVE_TYPES } from './chess.model';
+import { Chess, CHESS_TYPE, MOVE_TYPES } from './chess.model';
 import { ENVIRONMENT } from '../../../../environments/environment';
+import { ChessPointModel, IChessPointModel } from '../chess-point.model';
 
 
 
@@ -7,9 +8,9 @@ export class BishopChess extends Chess {
 
   readonly type = CHESS_TYPE.BISHOP;
 
-  get canMoveTo() : IChessMoveCoordinates[] {
+  get canMoveTo() : IChessPointModel[] {
 
-    let points : IChessMoveCoordinates[] = [];
+    let points : IChessPointModel[] = [];
 
     let y = this.y;
     for(let x = this.x; x < ENVIRONMENT.ROWS; x++) {
@@ -18,11 +19,7 @@ export class BishopChess extends Chess {
         break;
       }
 
-      points.push({
-        moveType : MOVE_TYPES.ALWAYS,
-        x : x,
-        y : y
-      });
+      points.push(ChessPointModel(x, y, MOVE_TYPES.ALWAYS));
       y++;
     }
 
@@ -33,11 +30,7 @@ export class BishopChess extends Chess {
         break;
       }
 
-      points.push({
-        moveType : MOVE_TYPES.ALWAYS,
-        x : x,
-        y : y
-      });
+      points.push(ChessPointModel(x, y, MOVE_TYPES.ALWAYS));
       y--;
     }
 
@@ -48,11 +41,7 @@ export class BishopChess extends Chess {
         break;
       }
 
-      points.push({
-        moveType : MOVE_TYPES.ALWAYS,
-        x : x,
-        y : y
-      });
+      points.push(ChessPointModel(x, y, MOVE_TYPES.ALWAYS));
       y++;
     }
 
@@ -63,11 +52,7 @@ export class BishopChess extends Chess {
         break;
       }
 
-      points.push({
-        moveType : MOVE_TYPES.ALWAYS,
-        x : x,
-        y : y
-      });
+      points.push(ChessPointModel(x, y, MOVE_TYPES.ALWAYS));
       y--;
     }
 

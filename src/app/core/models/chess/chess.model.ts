@@ -1,6 +1,5 @@
 import { ENVIRONMENT } from '../../../../environments/environment';
-
-
+import { IChessPointModel } from '../chess-point.model';
 
 export const CHESS_TYPE = {
   PAWN : 'Pawn',
@@ -16,18 +15,11 @@ export const CHESS_COLOR = {
   BLACK : 'Black'
 };
 
-
 export const MOVE_TYPES = {
   ONLY_MOVE : 'only_move',
   ONLY_COLLISION : 'only_collision',
   ALWAYS : 'always'
 };
-
-export interface IChessMoveCoordinates {
-  x : number;
-  y : number;
-  moveType ?: string;
-}
 
 export interface IChess {
   reverseDirection : boolean;
@@ -36,8 +28,10 @@ export interface IChess {
   moved : boolean;
   x : number;
   y : number;
-  canMoveTo : IChessMoveCoordinates[];
-  checkCollisions(chessMatrix : Chess|number[][], canMoveTo : IChessMoveCoordinates) : boolean;
+  canMoveTo : IChessPointModel[];
+
+  checkCollisions(chessMatrix : Chess[][], canMoveTo : IChessPointModel) : boolean;
+
   changePosition(x : number, y : number);
 }
 
@@ -57,17 +51,17 @@ export abstract class Chess implements IChess {
     this.y = y;
   }
 
-  get canMoveTo() : IChessMoveCoordinates[] {
+  get canMoveTo() : IChessPointModel[] {
     return [{x : 0, y : 0, moveType : MOVE_TYPES.ALWAYS}];
   }
 
   /**
    * Проверка на возможность перемещения к нужным координатам
-   * @param {IChessMoveCoordinates} coord
-   * @returns {IChessMoveCoordinates}
+   * @param {IChessPointModel} coord
+   * @returns {IChessPointModel}
    */
-  canMoveToCoordinates(coord : IChessMoveCoordinates) {
-    return this.canMoveTo.filter(c => c.x == coord.x && c.y === coord.y)[0]
+  canMoveToCoordinates(coord : IChessPointModel) : IChessPointModel {
+    return this.canMoveTo.filter(c => c.x === coord.x && c.y === coord.y)[0];
   }
 
   /**
@@ -75,7 +69,7 @@ export abstract class Chess implements IChess {
    * @param {Chess} collision
    * @returns {boolean}
    */
-  getAlwaysCollision(collision ?: Chess) : boolean {
+  getAlwaysCollision(collision ? : Chess) : boolean {
 
     if(!collision) {
       return true;
@@ -89,7 +83,7 @@ export abstract class Chess implements IChess {
    * @param {Chess} collision
    * @returns {boolean}
    */
-  getOnlyCollision(collision ?: Chess) : boolean {
+  getOnlyCollision(collision ? : Chess) : boolean {
 
     if(!collision) {
       return false;
@@ -111,21 +105,24 @@ export abstract class Chess implements IChess {
 
   /**
    * Проверка коллизий
-   * @param {Chess | number[][]} chessMatrix
-   * @param {IChessMoveCoordinates} moveTo
+   * @param {Chess[][]} chessMatrix
+   * @param {IChessPointModel} moveTo
    * @returns {boolean}
    */
-  checkCollisions(chessMatrix : Chess|number[][], moveTo : IChessMoveCoordinates) : boolean {
+  checkCollisions(chessMatrix : Chess[][], moveTo : IChessPointModel) : boolean {
 
     let canMoveTo = this.canMoveToCoordinates(moveTo);
     let collision = chessMatrix[moveTo.x][moveTo.y];
 
     if(canMoveTo) {
 
-      switch(canMoveTo.moveType) {
-        case MOVE_TYPES.ONLY_MOVE      : return !collision;
-        case MOVE_TYPES.ALWAYS         : return this.getAlwaysCollision(collision);
-        case MOVE_TYPES.ONLY_COLLISION : return this.getOnlyCollision(collision);
+      switch (canMoveTo.moveType) {
+        case MOVE_TYPES.ONLY_MOVE      :
+          return !collision;
+        case MOVE_TYPES.ALWAYS         :
+          return this.getAlwaysCollision(collision);
+        case MOVE_TYPES.ONLY_COLLISION :
+          return this.getOnlyCollision(collision);
       }
 
     } else {
@@ -140,19 +137,19 @@ export abstract class Chess implements IChess {
   /**
    * Получение матрицы возможных перемещений с учетом коллизий
    * @param {Chess | number[][]} chessMatrix
-   * @returns {any[][]}
+   * @returns {number[][]}
    */
-  getMovesMatrix(chessMatrix : Chess|number[][]) {
+  getMovesMatrix(chessMatrix : Chess[][]) {
 
     let movesMatrix : any[][] = [];
 
-    for(let i = 0; i < ENVIRONMENT.ROWS; i++) {
+    for (let i = 0; i < ENVIRONMENT.ROWS; i++) {
 
       movesMatrix[i] = [];
 
-      for(let j = 0; j < ENVIRONMENT.COLS; j++) {
+      for (let j = 0; j < ENVIRONMENT.COLS; j++) {
 
-        let canMoveTo = this.canMoveTo.filter((c) => c.x == i && c.y === j)[0];
+        let canMoveTo = this.canMoveTo.filter((c) => c.x === i && c.y === j)[0];
 
         if(canMoveTo) {
           if(this.checkCollisions(chessMatrix, canMoveTo)) {

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ChessBoardService } from './core-module/chess-board/chess-board.service';
+import { ChessBoardService } from './core/components/chess-board/chess-board.service';
 
 
 @Component({

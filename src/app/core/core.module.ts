@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { BoardComponent } from './board/board.component';
+import { BoardComponent } from './components/board/board.component';
 import { CommonModule } from '@angular/common';
-import { ChessComponent } from './chess/chess.component';
-import { ChessBoardComponent } from './chess-board/chess-board.component';
-import { ChessBoardService } from './chess-board/chess-board.service';
+import { ChessComponent } from './components/chess/chess.component';
+import { ChessBoardComponent } from './components/chess-board/chess-board.component';
+import { ChessBoardService } from './components/chess-board/chess-board.service';
 
 
 
